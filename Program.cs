@@ -61,9 +61,14 @@ namespace Quest
         Length = 35
       };
 
+      Hat adventurersHat = new Hat
+      {
+        ShininessLevel = 6
+      };
+
       //Get Players Name
       // Make a new "Adventurer" object using the "Adventurer" class
-      Adventurer theAdventurer = new Adventurer(name, adventurersRobe);
+      Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
 
       Console.WriteLine(theAdventurer.GetDescription());
 
