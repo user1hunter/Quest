@@ -1,7 +1,7 @@
-using System;
-
+//part of the main namespace for the project
 namespace Quest
 {
+  //this is the hat class where our hat get its properties
   public class Hat
   {
     public int ShininessLevel { get; set; }

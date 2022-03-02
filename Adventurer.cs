@@ -14,9 +14,10 @@ namespace Quest
     //  So it can be read and changed by any code in the application
     public int Awesomeness { get; set; }
 
-    // A constructor to make a new Adventurer object with a given name
+    //Robe property for our adventurer 
     public Robe ColorfulRobe { get; }
 
+    //Read only Hat Property for our adventurer
     public Hat Hat { get; }
 
     public Adventurer(string name, Robe robe, Hat hat)
@@ -27,6 +28,7 @@ namespace Quest
       Hat = hat;
     }
 
+    //This is the description of our adventurer that gets wrote to the console after User puts their name in 
     public string GetDescription()
     {
       return $"Adventurer {Name} is wearing a {String.Join(", ", ColorfulRobe.Colors)} robe that is {ColorfulRobe.Length} inches long. Their hat is {Hat.ShininessDescription}.";

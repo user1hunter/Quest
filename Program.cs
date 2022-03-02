@@ -42,9 +42,11 @@ namespace Quest
       int minAwesomeness = 0;
       int maxAwesomeness = 100;
 
+      //Asks User for their name
       Console.WriteLine("Please enter your name, Adventurer.");
       string name = Console.ReadLine();
 
+      //This adds the colors and the length to the robe for our adventurer
       Robe adventurersRobe = new Robe
       {
         Colors = new List<string>
@@ -61,15 +63,19 @@ namespace Quest
         Length = 35
       };
 
+      //This is adds the shininess level and the description is added through an if statemtnt in Hats.cs
       Hat adventurersHat = new Hat
       {
         ShininessLevel = 6
       };
 
-      //Get Players Name
-      // Make a new "Adventurer" object using the "Adventurer" class
+      //instance of the prize 
+      Prize showPrize = new Prize("A Potatoe Medal!!!");
+
+      // Make a new "Adventurer" object using the "Adventurer" class and passing in the name, robe, and hat
       Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
 
+      //Writing the secription of our adventurer to the console 
       Console.WriteLine(theAdventurer.GetDescription());
 
       // A list of challenges for the Adventurer to complete
@@ -83,8 +89,10 @@ namespace Quest
                 favoriteBeatle
             };
 
+      //flag for whether the game will run again 
       bool gameActive = true;
 
+      //loop for repeating the game if the user chooses to at the end
       while (gameActive == true)
       {
         // Loop through all the challenges and subject the Adventurer to them
@@ -108,9 +116,14 @@ namespace Quest
           Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
         }
 
+        //This is the call for the showPrize method
+        showPrize.ShowPrize(theAdventurer);
+
+        //this is the question to determine whether the user would like to quest again 
         Console.WriteLine("Would you like to play again? Y or N.");
         string repeatGame = Console.ReadLine();
 
+        //this is the statement that determines whether the flag is set to run through the game or not
         if (repeatGame != "Y")
         {
           gameActive = false;
