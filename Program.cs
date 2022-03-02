@@ -19,6 +19,8 @@ namespace Quest
           "What's the answer to life, the universe and everything?", 42, 25);
       Challenge whatSecond = new Challenge(
           "What is the current second?", DateTime.Now.Second, 50);
+      Challenge isIt = new Challenge("Is it?", 2, 10);
+      Challenge isThisSeven = new Challenge("Is this 7?", 7, 10);
 
       int randomNumber = new Random().Next() % 10;
       Challenge guessRandom = new Challenge("What number am I thinking of?", randomNumber, 25);
@@ -75,8 +77,6 @@ namespace Quest
       // Make a new "Adventurer" object using the "Adventurer" class and passing in the name, robe, and hat
       Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
 
-      //Writing the secription of our adventurer to the console 
-      Console.WriteLine(theAdventurer.GetDescription());
 
       // A list of challenges for the Adventurer to complete
       // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
@@ -86,7 +86,9 @@ namespace Quest
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                isIt,
+                isThisSeven
             };
 
       //flag for whether the game will run again 
@@ -95,11 +97,30 @@ namespace Quest
       //loop for repeating the game if the user chooses to at the end
       while (gameActive == true)
       {
+        theAdventurer.Awesomeness += theAdventurer.challengesWon * 10;
+        //Writing the secription of our adventurer to the console 
+        Console.WriteLine(theAdventurer.GetDescription());
+
         // Loop through all the challenges and subject the Adventurer to them
-        foreach (Challenge challenge in challenges)
+        List<Challenge> smallChallengeList = new List<Challenge>();
+        while (smallChallengeList.Count < 5)
+        {
+          Challenge chosenChallenge = challenges[new Random().Next(0, challenges.Count)];
+          if (!smallChallengeList.Contains(chosenChallenge))
+          {
+            smallChallengeList.Add(chosenChallenge);
+          }
+        }
+
+        // Loop through all the challenges and subject the Adventurer to them
+        foreach (Challenge challenge in smallChallengeList)
         {
           challenge.RunChallenge(theAdventurer);
         }
+
+        //This is the call for the showPrize method
+        showPrize.ShowPrize(theAdventurer);
+
 
         // This code examines how Awesome the Adventurer is after completing the challenges
         // And praises or humiliates them accordingly
@@ -116,8 +137,6 @@ namespace Quest
           Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
         }
 
-        //This is the call for the showPrize method
-        showPrize.ShowPrize(theAdventurer);
 
         //this is the question to determine whether the user would like to quest again 
         Console.WriteLine("Would you like to play again? Y or N.");

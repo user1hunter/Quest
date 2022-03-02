@@ -20,18 +20,21 @@ namespace Quest
     //Read only Hat Property for our adventurer
     public Hat Hat { get; }
 
+    public int challengesWon { get; set; }
+
     public Adventurer(string name, Robe robe, Hat hat)
     {
       Name = name;
       Awesomeness = 50;
       ColorfulRobe = robe;
       Hat = hat;
+      challengesWon = 0;
     }
 
     //This is the description of our adventurer that gets wrote to the console after User puts their name in 
     public string GetDescription()
     {
-      return $"Adventurer {Name} is wearing a {String.Join(", ", ColorfulRobe.Colors)} robe that is {ColorfulRobe.Length} inches long. Their hat is {Hat.ShininessDescription}.";
+      return $"Adventurer {Name} is wearing a {String.Join(", ", ColorfulRobe.Colors)} robe that is {ColorfulRobe.Length} inches long. Their hat is {Hat.ShininessDescription}. You have won {challengesWon} challenges.";
     }
 
     // This method returns a string that describes the Adventurer's status
